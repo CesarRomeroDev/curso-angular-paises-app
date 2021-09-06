@@ -1,0 +1,20 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Bandera</th>
+            <th>Nombre</th>
+            <th>Poblacion</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pais of paises; let i = index">                             <!--5.4(llenar la tabla de paises)agregamos ngFor con el nombre paises que viene del archivo por-paises.component.ts-->
+            <td>{{ i + 1 }}</td>
+            <td><img class="small-flag" [src]="pais.flag" alt=""></td>
+            <td>{{ pais.capital }} {{ pais.name }}</td>
+            <td>{{pais.population | number}}</td>                                   <!--5.5(llenar la tabla de paises)agregamos un '|' par aqu elos numeros se agreguen como numeros flotantes  -->
+            <td><a [routerLink]="[ '/pais', pais.alpha2Code ]">Ver</a></td>      <!--5.6(llenar la tabla de paises)agregar en pais.module  RouterModule para quitar el error-->
+        </tr>
+    </tbody>
+</table>

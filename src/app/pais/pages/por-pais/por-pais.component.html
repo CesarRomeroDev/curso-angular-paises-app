@@ -6,9 +6,7 @@
 
 <div class="row">
     <div class="col">
-        <form (ngSubmit)="buscar()" autocomplete="off">
-            <input type="text" name="termino" class="form-control" [(ngModel)]="termino" placeholder="Buscar País...."> 
-        </form>
+        <app-pais-input (onEnter)="buscar( $event )" (onDebounce)="sugerencias( $event )" placeholder="Buscar por País...."></app-pais-input>
     </div>
 </div>
 <hr>
@@ -16,27 +14,9 @@
     No se encontró nada con el termino {{termino}}                                            <!--6.2-(manejo de herrores) agregamos termino para que nos imprima el error que escribimos-->
 </div>
 
-<div class="row" *ngIf="!hayError">                                                            <!--7.2-(manejo de herrores) si hya error no muestres la tabla-->
+<!--iv class="row" *ngIf="paises.length > 0">-->                                                            <!--7.2-(manejo de herrores) si hya error no muestres la tabla-->
+<div class="row" *ngIf="paises.length > 0">                                                   <!--5.7(llenar la tabla de paises) para no mostrar la tabla cuando no hay paises o un error-->
     <div class="col">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Bandera</th>
-                    <th>Nombre</th>
-                    <th>Poblacion</th>
-                    <th>#</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let pais of paises; let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td><img class="small-flag" [src]="pais.flag" alt=""></td>
-                    <td>{{ pais.name }}</td>
-                    <td>{{pais.population | number}}</td>
-                    <td><a href="/pais/cri ">Ver</a></td>
-                </tr>
-            </tbody>
-        </table>
+        <app-pais-tabla [paises]='paises'></app-pais-tabla>
     </div>
 </div>

@@ -30,5 +30,22 @@ export class PaisService {
   
   }
 
+  busacarCapital( termino: string ): Observable<Country[]> {                //3.2- (tipado de la petricion de RestCountries)  cambiamos any por Country[]
+
+    const url =  `${ this.apiUrl }/capital/${ termino } `;
+      return this.http.get<Country[]>( url );                             //3.4- (tipado de la petricion de RestCountries) tambien agregamos Country                          
+                                                                
+  
+  }
+
+
+  getPaisPorAlpha( id: string ): Observable<Country> {                //3.2- (tipado de la petricion de RestCountries)  cambiamos any por Country[]
+
+    const url =  `${ this.apiUrl }/alpha/${ id } `;
+      return this.http.get<Country>( url );                             //3.4- (tipado de la petricion de RestCountries) tambien agregamos Country                          
+                                                                
+  
+  }
+
 
 }

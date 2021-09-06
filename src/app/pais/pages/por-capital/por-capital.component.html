@@ -1,1 +1,22 @@
-<p>por-capital works!</p>
+<!--para utilizar el ngModel en el input tenemos que exportarlo a pais.module.ts y se importa com FormModule-->
+<!--Tambien agregamos el ngSubmit para que al momento de dar Enter en la caja de texto nos arroje el nombre del pais en consola-->
+<!--todo esto son pruebas para ver las respuestas del ngModel y ngSubmit-->
+<h2>Por Capital</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <app-pais-input (onEnter)="buscar( $event )" placeholder="Buscar por Capital...."></app-pais-input>
+    </div>
+</div>
+<hr>
+<div class="alert alert-danger" *ngIf="hayError">                                             <!--5.2- (manejo de herrores) agregamos un ngIf llamamos "Hay Error"-->
+    No se encontró nada con el termino {{termino}}                                            <!--6.2-(manejo de herrores) agregamos termino para que nos imprima el error que escribimos-->
+</div>
+
+<!--iv class="row" *ngIf="paises.length > 0">-->                                                            <!--7.2-(manejo de herrores) si hya error no muestres la tabla-->
+<div class="row" *ngIf="paises.length > 0">                                                   <!--5.7(llenar la tabla de paises) para no mostrar la tabla cuando no hay paises o un error-->
+    <div class="col">
+        <app-pais-tabla [paises]='paises'></app-pais-tabla>
+    </div>
+</div>
